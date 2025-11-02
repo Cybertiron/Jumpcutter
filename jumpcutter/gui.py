@@ -37,7 +37,7 @@ class JumpCutterApp(tk.Tk):
         main_frame = tk.Frame(self)
         main_frame.pack(pady=10)
 
-        # Silence threshold controls
+        # Tylos slenkscio kontrole
         thresh_frame = tk.Frame(main_frame)
         thresh_frame.pack(pady=5)
 
@@ -57,7 +57,7 @@ class JumpCutterApp(tk.Tk):
         self.thresh_desc.pack()
         self._update_thresh_desc(-40)
 
-        # Minimum silence length controls
+        # Minimali tylos trukmes kontole
         silence_len_frame = tk.Frame(main_frame)
         silence_len_frame.pack(pady=5)
 
@@ -77,15 +77,15 @@ class JumpCutterApp(tk.Tk):
         self.silence_len_desc.pack()
         self._update_silence_len_desc(500)
 
-        # Video selection button
+        # Vaizdo pasirinkimo mygtukas
         tk.Button(self, text="Pasirinkti video", command=self._select_file).pack(pady=20)
 
-        # Progress indicator and status label
+        # Progreso indikatorius ir statusas
         self.progress = ttk.Progressbar(self, mode="indeterminate")
         self.status_label = tk.Label(self, text="", fg="gray")
         self.status_label.pack()
 
-    # --- Actions ----------------------------------------------------
+    # --- Veiksmai ----------------------------------------------------
     def _select_file(self) -> None:
         file_path = filedialog.askopenfilename(
             title="Pasirinkite video failą",

@@ -1,4 +1,4 @@
-"""Paleidimo taškas, skirtas „Jumpcutter“ grafinės programos startui."""
+"""Paleidima, skirtas „Jumpcutter“ grafinės programos startui."""
 
 from jumpcutter import JumpCutterApp
 

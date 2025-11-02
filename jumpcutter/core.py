@@ -17,14 +17,14 @@ TimeRange = Tuple[float, float]
 
 
 def _export_audio(video: VideoFileClip, temp_audio_path: str) -> None:
-    """Išeksportuoja garso takelį iš ``video`` į laikiną ``temp_audio_path`` failą."""
+    """Eksportuoja garso takelį iš ``video`` į laikiną ``temp_audio_path`` failą."""
     video.audio.write_audiofile(temp_audio_path, logger=None)
 
 
 def _detect_nonsilent_parts(
     audio_path: str, min_silence_len: int, silence_thresh: int
 ) -> List[TimeRange]:
-    """Randa ir grąžina visų negarsiųjų (kalbos) atkarpų laiko intervalus."""
+    """Randa ir grąžina visų tylos atkarpų laiko intervalus."""
     sound = AudioSegment.from_file(audio_path)
     nonsilent_parts = detect_nonsilent(
         sound, min_silence_len=min_silence_len, silence_thresh=silence_thresh
@@ -49,7 +49,7 @@ def _process_segment(
             temp_input.name, codec="libx264", audio_codec="aac", logger=None
         )
 
-        # Šis FFmpeg kvietimas pateikia pavyzdinį pagreitinimą, jei reikėtų korekcijų ateityje.
+        # FFmpeg pagreitinimas, jei reikėtų korekcijų ateityje.
         ffmpeg_cmd = [
             "ffmpeg",
             "-y",
@@ -88,7 +88,7 @@ def jumpcutter(
     print("[1/4] Įkeliame video failą į atmintį...")
     video = VideoFileClip(video_path)
 
-    print("[2/4] Išskiriame garso takelį tylos paieškai...")
+    print("[2/4] Išskiriame garso takelį...")
     temp_audio_path = "temp_audio.wav"
     _export_audio(video, temp_audio_path)
 
@@ -109,7 +109,7 @@ def jumpcutter(
     final_video = concatenate_videoclips(clips)
     final_video.write_videofile(output_path, codec="libx264", audio_codec="aac")
 
-    # Tvarkome laikinus failus ir pranešame vartotojui.
+    # Tvarkome temp failus ir pranešame vartotojui.
     if os.path.exists(temp_audio_path):
         os.remove(temp_audio_path)
 

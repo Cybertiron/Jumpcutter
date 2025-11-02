@@ -1,4 +1,4 @@
-"""Pagrindinė „Jumpcutter“ vaizdo apdorojimo logika."""
+"""Core „Jumpcutter“ vaizdo apdorojimo logika."""
 
 from __future__ import annotations
 

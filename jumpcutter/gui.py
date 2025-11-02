@@ -1,4 +1,4 @@
-"""Graphical user interface for Jumpcutter."""
+"""Grafinė „Jumpcutter“ naudotojo sąsaja."""
 
 import os
 import tkinter as tk
@@ -8,7 +8,7 @@ from .core import jumpcutter
 
 
 class JumpCutterApp(tk.Tk):
-    """Tkinter-based GUI for configuring and running Jumpcutter."""
+    """Tkinter pagrindu sukurta sąsaja „Jumpcutter“ nustatymams ir paleidimui."""
 
     def __init__(self) -> None:
         super().__init__()

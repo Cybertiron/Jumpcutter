@@ -1,4 +1,4 @@
-"""Jumpcutter package."""
+"""„Jumpcutter“ paketas."""
 
 from .core import jumpcutter
 from .gui import JumpCutterApp

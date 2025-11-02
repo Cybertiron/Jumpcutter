@@ -1,4 +1,4 @@
-"""Entry point for running the Jumpcutter GUI application."""
+"""Paleidimo taškas, skirtas „Jumpcutter“ grafinės programos startui."""
 
 from jumpcutter import JumpCutterApp
 

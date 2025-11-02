@@ -1,4 +1,4 @@
-"""Core video processing logic for Jumpcutter."""
+"""Pagrindinė „Jumpcutter“ vaizdo apdorojimo logika."""
 
 from __future__ import annotations
 
@@ -17,14 +17,14 @@ TimeRange = Tuple[float, float]
 
 
 def _export_audio(video: VideoFileClip, temp_audio_path: str) -> None:
-    """Export the audio track of the given ``video`` to ``temp_audio_path``."""
+    """Išeksportuoja garso takelį iš ``video`` į laikiną ``temp_audio_path`` failą."""
     video.audio.write_audiofile(temp_audio_path, logger=None)
 
 
 def _detect_nonsilent_parts(
     audio_path: str, min_silence_len: int, silence_thresh: int
 ) -> List[TimeRange]:
-    """Return a list of non-silent time ranges from the supplied audio file."""
+    """Randa ir grąžina visų negarsiųjų (kalbos) atkarpų laiko intervalus."""
     sound = AudioSegment.from_file(audio_path)
     nonsilent_parts = detect_nonsilent(
         sound, min_silence_len=min_silence_len, silence_thresh=silence_thresh
@@ -35,11 +35,11 @@ def _detect_nonsilent_parts(
 def _process_segment(
     video: VideoFileClip, start: float, end: float, min_silence_len: int
 ) -> VideoFileClip:
-    """Return a processed ``VideoFileClip`` for the given time range."""
+    """Sukuria apdorotą ``VideoFileClip`` konkrečiai laiko atkarpai."""
     segment_duration = end - start
     segment = video.subclip(start, end)
 
-    # Speed up short segments with FFmpeg if needed
+    # Jei atkarpa trumpesnė nei nustatyta minimali tyla, ją išsaugome kaip yra.
     if segment_duration >= (min_silence_len / 1000):
         return segment
 
@@ -49,6 +49,7 @@ def _process_segment(
             temp_input.name, codec="libx264", audio_codec="aac", logger=None
         )
 
+        # Šis FFmpeg kvietimas pateikia pavyzdinį pagreitinimą, jei reikėtų korekcijų ateityje.
         ffmpeg_cmd = [
             "ffmpeg",
             "-y",
@@ -78,27 +79,27 @@ def jumpcutter(
     silence_thresh: int = -40,
     min_silence_len: int = 500,
 ) -> None:
-    """Generate a new video that skips silent segments."""
+    """Sukuria naują video, kuriame tylos atkarpos praleidžiamos."""
     if not os.path.isfile(video_path):
-        print(f"Error: The file '{video_path}' does not exist.")
+        print(f"Klaida: failas '{video_path}' nerastas.")
         return
 
-    print(f"\nProcessing: {video_path}")
-    print("[1/4] Loading video...")
+    print(f"\nApdorojamas failas: {video_path}")
+    print("[1/4] Įkeliame video failą į atmintį...")
     video = VideoFileClip(video_path)
 
-    print("[2/4] Exporting audio for silence detection...")
+    print("[2/4] Išskiriame garso takelį tylos paieškai...")
     temp_audio_path = "temp_audio.wav"
     _export_audio(video, temp_audio_path)
 
-    print("[3/4] Detecting non-silent audio segments...")
+    print("[3/4] Ieškome kalbos (ne tylos) atkarpų garse...")
     nonsilent_times = _detect_nonsilent_parts(
         temp_audio_path, min_silence_len=min_silence_len, silence_thresh=silence_thresh
     )
 
-    print("[4/4] Creating new video by concatenating non-silent parts...")
+    print("[4/4] Sujungiame rastas atkarpas į naują video failą...")
     clips = []
-    for start, end in tqdm(nonsilent_times, desc="Processing video segments"):
+    for start, end in tqdm(nonsilent_times, desc="Apdorojame vaizdo segmentus"):
         try:
             clips.append(_process_segment(video, start, end, min_silence_len))
         except Exception as exc:  # pragma: no cover - logging is side-effect only
@@ -107,3 +108,9 @@ def jumpcutter(
 
     final_video = concatenate_videoclips(clips)
     final_video.write_videofile(output_path, codec="libx264", audio_codec="aac")
+
+    # Tvarkome laikinus failus ir pranešame vartotojui.
+    if os.path.exists(temp_audio_path):
+        os.remove(temp_audio_path)
+
+    print(f"Darbas baigtas! Naujas failas: {output_path}")

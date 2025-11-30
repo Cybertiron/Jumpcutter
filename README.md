@@ -42,7 +42,7 @@ Jumpcutter is a desktop tool that trims silent segments from lecture or talk rec
 
 ---
 
-# Jumpcutter GUI (Lietuviškai)
+# Jumpcutter GUI Lietuviškai
 
 „Jumpcutter“ – tai darbalaukio įrankis, skirtas pašalinti tylias paskaitų ar pranešimų įrašų atkarpas ir taip sukurti trumpesnį, įtaigesnį vaizdo įrašą. Programa naudoja Tkinter grafinę sąsają ir FFmpeg, o lange pateikia paaiškinimus, kaip pasirinkti failą, nustatyti parametrus ir paleisti apdorojimą sinchronizuojant garsą su vaizdu.
 

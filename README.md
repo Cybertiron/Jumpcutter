@@ -1,12 +1,12 @@
 # Jumpcutter GUI
 
-Jumpcutter is a desktop tool that trims silent segments from lecture or talk recordings to create a shorter, more engaging video. The application provides a Tkinter-based interface on top of FFmpeg, guiding you through loading a source file, choosing output options, and processing the video while keeping audio and video in sync.
+Jumpcutter is a desktop application that removes silent parts from lectures or talks to make a shorter and more watchable video. It offers a Tkinter interface over FFmpeg, walking you through loading a source file, selecting output options, and processing the video while maintaining audio/video sync.
 
 ## Features
-- Detects silent sections in a video by analysing the audio track and removes them automatically.
-- Uses FFmpeg under the hood for reliable audio/video processing.
-- Offers a simple graphical interface that explains each step of the workflow in Lithuanian.
-- Keeps the codebase modular with separate `core` processing logic and `gui` orchestration modules.
+- Analyses the audio track to automatically detect and remove silent sections.
+- Uses FFmpeg under the hood for dependable processing of audio and video.
+- Provides a basic graphical interface in Lithuanian which breaks down each step in the workflow.
+- Maintains modular separation between core processing logic and GUI orchestration modules.
 
 ## Requirements
 - Python 3.8 or later.
@@ -31,31 +31,32 @@ Jumpcutter is a desktop tool that trims silent segments from lecture or talk rec
    ```bash
    python -m jumpcutter.gui
    ```
-3. Follow the Lithuanian prompts in the window to select an input video, adjust silence thresholds, and start processing.
-4. The processed video is saved next to the source file with silent portions removed.
+3. Select an input video, set thresholds for silence, and begin processing by following the Lithuanian instructions in the GUI.
+4. The output video will be saved in the same location as the source file with silences removed.
+
 
 ## Project Structure
-- `jumpcutter/core.py` — processing pipeline that analyses audio, removes silence, and writes the final video.
-- `jumpcutter/gui.py` — Tkinter interface that gathers user input and orchestrates processing with explanatory Lithuanian messages.
-- `jumpcutter/__init__.py` — package metadata and convenience helpers.
-- `jumpcutter.py` — legacy launcher kept for backwards compatibility.
+- `jumpcutter/core.py` — Contains a processing pipeline which detects silences in audio, removes them and writes final output video.
+- `jumpcutter/gui.py` — A Tkinter based interface to collect inputs from userand manage processing.Displaying all messages to user in Lithuanian.
+- `jumpcutter/__init__.py` — Contains package meta data and some utility functions.<end_of_text|>
+- `jumpcutter.py` — older launcher still around for keeping things compatible with older versions.
 
 ---
 
 # Jumpcutter GUI Lietuviškai
 
-„Jumpcutter“ – tai darbalaukio įrankis, skirtas pašalinti tylias paskaitų ar pranešimų įrašų atkarpas ir taip sukurti trumpesnį, įtaigesnį vaizdo įrašą. Programa naudoja Tkinter grafinę sąsają ir FFmpeg, o lange pateikia paaiškinimus, kaip pasirinkti failą, nustatyti parametrus ir paleisti apdorojimą sinchronizuojant garsą su vaizdu.
+„Jumpcutter“ yra darbalaukio programa, skirta tylos fragmentams pašalinti iš paskaitų ar pristatymų, kad vaizdo įrašai būtų trumpesni ir įtraukiantys. Ji veikia su „Tkinter“ grafine sąsaja, naudodama „FFmpeg“, ir savo lange paaiškina, kaip pasirinkti failą, nustatyti parametrus ir pradėti apdorojimą sinchronizuojant garsą su vaizdo įrašu.
 
 ## Funkcijos
-- Automatiškai aptinka tylias garso takelio vietas ir jas iškerpa.
-- Naudoja FFmpeg, todėl apdorojimas yra patikimas ir kokybiškas.
-- Pateikia paprastą grafinę sąsają su aiškiais lietuviškais paaiškinimais.
-- Kodo bazė suskaidyta į atskirus `core` ir `gui` modulius, todėl lengviau prižiūrėti ir plėsti.
+- Automatiškai aptinka ir iškirpa tylias garso takelio dalis.
+- Naudoja „FFmpeg“, kad apdorojimas būtų patikimas ir aukštos kokybės.
+- Turi paprastą grafinę sąsają aiškia lietuvių kalba.
+- Šaltinio kodas yra padalintas į atskirus pagrindinius ir gui modulius, kad būtų lengviau prižiūrėti ir išplėsti.
 
-## Reikalavimai
-- Python 3.8 arba naujesnė versija.
-- FFmpeg turi būti prieinamas per sistemos `PATH`.
-- Rekomenduojama naudoti virtualią aplinką priklausomybėms atskirti.
+## REIKALAVIMAI
+- Python 3.8 (ar naujesnis).
+- FFmpeg prienamas sistemos PATH.
+-Rekomenduoti naudoti virtualią aplinką priklausomybėms atskirti.
 
 ## Diegimas
 1. Nuklonuokite šį repozitoriją ir atverkite projekto aplanką:
@@ -70,13 +71,13 @@ Jumpcutter is a desktop tool that trims silent segments from lecture or talk rec
    ```
 
 ## Naudojimas
-1. Įsitikinkite, kad FFmpeg įdiegtas ir pasiekiamas per komandų eilutę.
+1. Įsitikinkite, kad FFmpeg yra įdiegtas ir pasiekiamas iš komandinės eilutės.
 2. Paleiskite grafinę sąsają:
    ```bash
    python -m jumpcutter.gui
    ```
 3. Lange vadovaukitės lietuviškais nurodymais: pasirinkite įvesties vaizdo įrašą, sureguliuokite tylos slenksčius ir pradėkite apdorojimą.
-4. Apdorotas vaizdo įrašas išsaugomas greta pradinio failo, pašalinus tylias atkarpas.
+4. Apdorotas išvesties vaizdo įrašas bus išsaugotas šalia originalaus failo, pašalinus tylias dalis.
 
 ## Projekto struktūra
 - `jumpcutter/core.py` – apdorojimo eiga: garso analizė, tylos iškirpimas ir galutinio vaizdo įrašymas.

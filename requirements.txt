@@ -1,0 +1,10 @@
+moviepy==1.0.3
+pydub==0.25.1
+numpy
+pillow
+decorator
+imageio==2.9.0
+imageio-ffmpeg
+proglog
+opencv-python>=4.5.0
+scipy>=1.7.0

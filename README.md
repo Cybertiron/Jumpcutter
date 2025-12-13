@@ -9,7 +9,7 @@ Jumpcutter is a desktop application that removes silent parts from lectures or t
 - Maintains modular separation between core processing logic and GUI orchestration modules.
 
 ## Requirements
-- Python 3.8 or later.
+- Python 3.8 or later. (Personally used 3.9 or 3.11)
 - FFmpeg available on your system `PATH`.
 - Recommended: a virtual environment to isolate dependencies.
 
@@ -54,7 +54,7 @@ Jumpcutter is a desktop application that removes silent parts from lectures or t
 - Šaltinio kodas yra padalintas į atskirus pagrindinius ir gui modulius, kad būtų lengviau prižiūrėti ir išplėsti.
 
 ## REIKALAVIMAI
-- Python 3.8 (ar naujesnis).
+- Python 3.8 (ar naujesnis). (Asmeniškai naudojau 3.9 arba 3.11) 
 - FFmpeg prienamas sistemos PATH.
 -Rekomenduoti naudoti virtualią aplinką priklausomybėms atskirti.
 

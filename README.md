@@ -2,6 +2,9 @@
 
 Jumpcutter is a desktop application that removes silent parts from lectures or talks to make a shorter and more watchable video. It offers a Tkinter interface over FFmpeg, walking you through loading a source file, selecting output options, and processing the video while maintaining audio/video sync.
 
+## JumpCutter GUI
+![GUI](images/gui.png)
+
 ## Features
 - Analyses the audio track to automatically detect and remove silent sections.
 - Uses FFmpeg under the hood for dependable processing of audio and video.
